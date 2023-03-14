@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getCharacterById } from '../../services/api';
 import { BiArrowBack } from 'react-icons/bi';
+import Loader from 'components/Loader/Loader';
 
 function CharacterDetails() {
   const [character, setCharacter] = useState({});
@@ -29,6 +30,12 @@ function CharacterDetails() {
     navigate(location?.state?.from ?? '/');
   };
 
+  // console.log('1', character);
+
+  // if (!character) {
+  //   return <Loader />;
+  // }
+
   const {
     name: heroName,
     gender,
@@ -40,7 +47,7 @@ function CharacterDetails() {
     image,
   } = character;
 
-  console.log(character);
+  // console.log('2', character);
 
   return (
     <div>
