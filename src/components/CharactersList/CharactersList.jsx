@@ -1,5 +1,12 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { List, Item, ImgWrapper, InfoWrapper } from './CharactersList.styled';
+import {
+  List,
+  Item,
+  ImgWrapper,
+  InfoWrapper,
+  HeroName,
+  HeroSpecies,
+} from './CharactersList.styled';
 import PropTypes from 'prop-types';
 
 function CharactersList({ characters }) {
@@ -14,8 +21,8 @@ function CharactersList({ characters }) {
               <img src={image} alt={name} />
             </ImgWrapper>
             <InfoWrapper>
-              <h2>{name ?? 'default name'}</h2>
-              <p>{species}</p>
+              <HeroName>{name ?? 'default name'}</HeroName>
+              <HeroSpecies>{species}</HeroSpecies>
             </InfoWrapper>
           </NavLink>
         </Item>
