@@ -1,4 +1,4 @@
-// import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 import {
   ImgWrapper,
   InfoWrapper,
@@ -11,7 +11,7 @@ import { getCharacterById } from '../../services/api';
 import { BiArrowBack } from 'react-icons/bi';
 
 function CharacterDetails() {
-  const [character, setCharacter] = useState({});
+  const [character, setCharacter] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -29,24 +29,19 @@ function CharacterDetails() {
     navigate(location?.state?.from ?? '/');
   };
 
-  // console.log('1', character);
-
-  // if (!character) {
-  //   return <Loader />;
-  // }
+  if (!character) {
+    return <Loader />;
+  }
 
   const {
     name: heroName,
     gender,
     status,
     species,
-    // origin: { name: originName },
-    // origin,
+    origin: { name: originName },
     type,
     image,
   } = character;
-
-  // console.log('2', character);
 
   return (
     <div>
@@ -68,7 +63,7 @@ function CharacterDetails() {
           <h4>Specie</h4>
           <p>{species}</p>
           <h4>Origin</h4>
-          {/* <p>{origin}</p> */}
+          <p>{originName}</p>
           <h4>Type</h4>
           <p>{type}</p>
         </InfoWrapper>
