@@ -10,7 +10,6 @@ export async function getAllCharacters() {
 
     return characters.data;
   } catch (error) {
-    // toast.error('Something went wrong 😥!');
     console.error(error);
   }
 }
@@ -25,7 +24,6 @@ export async function getCharacterById(id, controller) {
 
     return charactersDetails.data;
   } catch (error) {
-    // toast.error('Something went wrong 😥!');
     console.error(error);
   }
 }

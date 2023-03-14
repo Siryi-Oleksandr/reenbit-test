@@ -1,9 +1,14 @@
 import Loader from 'components/Loader/Loader';
 import {
   ImgWrapper,
-  InfoWrapper,
+  InfoList,
   ItemWrapper,
   Btn,
+  HeroName,
+  InformTitle,
+  InfoItem,
+  InfoType,
+  InfoValue,
 } from './CharacterDetails.styled';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -53,20 +58,30 @@ function CharacterDetails() {
         <ImgWrapper>
           <img src={image} alt={heroName} />
         </ImgWrapper>
-        <h2>{heroName}</h2>
-        <p>Informations</p>
-        <InfoWrapper>
-          <h4>Gender</h4>
-          <p>{gender}</p>
-          <h4>Status</h4>
-          <p>{status}</p>
-          <h4>Specie</h4>
-          <p>{species}</p>
-          <h4>Origin</h4>
-          <p>{originName}</p>
-          <h4>Type</h4>
-          <p>{type}</p>
-        </InfoWrapper>
+        <HeroName>{heroName}</HeroName>
+        <InformTitle>Informations</InformTitle>
+        <InfoList>
+          <InfoItem>
+            <InfoType>Gender</InfoType>
+            <InfoValue>{gender ? gender : 'Unknown'}</InfoValue>
+          </InfoItem>
+          <InfoItem>
+            <InfoType>Status</InfoType>
+            <InfoValue>{status ? status : 'Unknown'}</InfoValue>
+          </InfoItem>
+          <InfoItem>
+            <InfoType>Specie</InfoType>
+            <InfoValue>{species ? species : 'Unknown'}</InfoValue>
+          </InfoItem>
+          <InfoItem>
+            <InfoType>Origin</InfoType>
+            <InfoValue>{originName ? originName : 'Unknown'}</InfoValue>
+          </InfoItem>
+          <InfoItem>
+            <InfoType>Type</InfoType>
+            <InfoValue>{type ? type : 'Unknown'}</InfoValue>
+          </InfoItem>
+        </InfoList>
       </ItemWrapper>
     </div>
   );

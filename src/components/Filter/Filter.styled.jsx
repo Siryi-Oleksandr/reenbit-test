@@ -3,10 +3,25 @@ import { BsSearch } from 'react-icons/bs';
 
 export const FilterLabel = styled.label`
   position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 290px;
 
   display: flex;
   align-items: center;
-  width: 100%;
+
+  @media screen and (min-width: 530px) {
+    width: 400px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 600px;
+  }
+
+  @media screen and (min-width: 1050px) {
+    width: 100%;
+  }
 `;
 
 export const Input = styled.input`

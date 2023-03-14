@@ -1,12 +1,12 @@
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getAllCharacters } from 'services/api';
 import { sortByName } from 'services/sortByName';
-import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
 import CharactersList from 'components/CharactersList/CharactersList';
 import logo from '../../images/logo.png';
 import { LogoWrapper } from './Characters.styled';
 import Filter from 'components/Filter';
-import { useSearchParams } from 'react-router-dom';
 import Error from 'components/Error/Error';
 
 function Characters() {
