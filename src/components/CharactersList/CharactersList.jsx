@@ -32,16 +32,14 @@ function CharactersList({ characters }) {
 }
 
 CharactersList.propTypes = {
-  // characters: PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     id: PropTypes.number.isRequired,
-  //     poster_path: PropTypes.string,
-  //     name: PropTypes.string,
-  //     original_title: PropTypes.string,
-  //     vote_average: PropTypes.number,
-  //     vote_count: PropTypes.number,
-  //   })
-  // ).isRequired,
+  characters: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      image: PropTypes.string,
+      name: PropTypes.string,
+      species: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default CharactersList;

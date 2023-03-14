@@ -7,17 +7,18 @@ const Filter = ({ value, onChange }) => {
       <Icon />
       <Input
         type="text"
+        name="filter"
         value={value}
         placeholder="Filter by name..."
-        onChange={onChange}
+        onChange={e => onChange(e.target.value)}
       />
     </FilterLabel>
   );
 };
 
-// Filter.propTypes = {
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-// };
+Filter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default Filter;

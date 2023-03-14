@@ -1,4 +1,4 @@
-import Loader from 'components/Loader/Loader';
+// import Loader from 'components/Loader/Loader';
 import {
   ImgWrapper,
   InfoWrapper,
@@ -24,10 +24,6 @@ function CharacterDetails() {
       abortConroller.abort();
     };
   }, [id]);
-
-  // if (!character) {
-  //   return <Loader />;
-  // }
 
   const handleGoBack = () => {
     navigate(location?.state?.from ?? '/');

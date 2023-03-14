@@ -1,19 +1,23 @@
 import { getAllCharacters } from 'services/api';
 import { sortByName } from 'services/sortByName';
 import { useEffect, useState } from 'react';
-// import Error from 'components/Error';
 import Loader from 'components/Loader/Loader';
 import CharactersList from 'components/CharactersList/CharactersList';
 import logo from '../../images/logo.png';
-import { Form, Input, LogoWrapper, SearchBtn } from './Characters.styled';
+import { LogoWrapper } from './Characters.styled';
 import Filter from 'components/Filter';
+import { useSearchParams } from 'react-router-dom';
+import Error from 'components/Error/Error';
 
 function Characters() {
   const [characters, setCharacters] = useState([]);
   const [status, setStatus] = useState('idle');
-  const [pages, setPages] = useState(null);
+  // const [pages, setPages] = useState(null); // this state for feature button 'load more'
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState('');
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filterName = searchParams.get('name') ?? '';
+  const [filter, setFilter] = useState(filterName ?? '');
 
   useEffect(() => {
     setStatus('pending');
@@ -21,7 +25,7 @@ function Characters() {
       .then(data => {
         const sortedCharacters = sortByName(data.results);
         setCharacters(sortedCharacters);
-        setPages(data.info.pages);
+        // setPages(data.info.pages);
         setStatus('resolved');
       })
       .catch(error => {
@@ -30,8 +34,10 @@ function Characters() {
       });
   }, []);
 
-  const changeFilter = evt => {
-    setFilter(evt.currentTarget.value);
+  const updateQueryString = name => {
+    const nextParams = name !== '' ? { name } : {};
+    setSearchParams(nextParams);
+    setFilter(name);
   };
 
   const filterList = () => {
@@ -48,11 +54,11 @@ function Characters() {
         <img src={logo} alt="logo" />
       </LogoWrapper>
 
-      <Filter value={filter} onChange={changeFilter} />
+      <Filter value={filter} onChange={updateQueryString} />
 
       {status === 'pending' && <Loader />}
       {status === 'resolved' && <CharactersList characters={filterList()} />}
-      {/* {status === 'rejected' && <Error error={error.message} />} */}
+      {status === 'rejected' && <Error error={error.message} />}
     </div>
   );
 }
