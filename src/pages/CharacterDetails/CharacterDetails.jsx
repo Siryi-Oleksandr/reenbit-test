@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getCharacterById } from '../../services/api';
 import { BiArrowBack } from 'react-icons/bi';
-import Loader from 'components/Loader/Loader';
 
 function CharacterDetails() {
   const [character, setCharacter] = useState({});
