@@ -35,10 +35,12 @@ function CharacterDetails() {
     status,
     species,
     // origin: { name: originName },
-    origin,
+    // origin,
     type,
     image,
   } = character;
+
+  console.log(character);
 
   return (
     <div>
@@ -60,7 +62,7 @@ function CharacterDetails() {
           <h4>Specie</h4>
           <p>{species}</p>
           <h4>Origin</h4>
-          {/* <p>{name}</p> */}
+          {/* <p>{origin}</p> */}
           <h4>Type</h4>
           <p>{type}</p>
         </InfoWrapper>
