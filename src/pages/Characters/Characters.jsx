@@ -12,9 +12,10 @@ import {
   Button,
   ButtonWrapper,
 } from 'components/AuthOptions/AuthOptions.styled';
-import { AiFillDislike, AiFillLike } from 'react-icons/ai';
+import { GoSignOut, GoSignIn } from 'react-icons/go';
+import UserProfile from 'components/UserProfile/UserProfile';
 
-function Characters({ isUser, signOutUser, signIn }) {
+function Characters({ isUser, userName, userImage, signOutUser, signIn }) {
   const [characters, setCharacters] = useState([]);
   const [status, setStatus] = useState('idle');
   // const [pages, setPages] = useState(null); // this state for feature button 'load more'
@@ -23,8 +24,6 @@ function Characters({ isUser, signOutUser, signIn }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const filterName = searchParams.get('name') ?? '';
   const [filter, setFilter] = useState(filterName ?? '');
-
-  console.log(isUser);
 
   useEffect(() => {
     setStatus('pending');
@@ -57,16 +56,16 @@ function Characters({ isUser, signOutUser, signIn }) {
 
   return (
     <div>
-      {/* <AuthOptions signIn={firebase.signIn} signOut={firebase.signOutUser} /> */}
+      {isUser && <UserProfile image={userImage} name={userName} />}
       <ButtonWrapper>
         {!isUser && (
           <Button
             type="button"
-            style={{ backgroundColor: '#22c367' }}
+            style={{ backgroundColor: '#10d4ba' }}
             onClick={() => signIn()}
           >
             Log in with Google
-            <AiFillLike />
+            <GoSignIn />
           </Button>
         )}
 
@@ -77,7 +76,7 @@ function Characters({ isUser, signOutUser, signIn }) {
             onClick={() => signOutUser()}
           >
             Log out
-            <AiFillDislike />
+            <GoSignOut />
           </Button>
         )}
       </ButtonWrapper>

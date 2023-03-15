@@ -17,6 +17,8 @@ import { useState } from 'react';
 
 function App() {
   const [isUser, setIsUser] = useState(false);
+  const [userName, setUserName] = useState(null);
+  const [userImage, setUserImage] = useState(null);
 
   async function signIn() {
     const provider = new GoogleAuthProvider();
@@ -37,10 +39,10 @@ function App() {
       let profilePicUrl = getProfilePicUrl();
       let userName = getUserName();
       setIsUser(true);
-      console.log('authStateObserver працює');
+      setUserImage(profilePicUrl);
+      setUserName(userName);
     } else {
       setIsUser(false);
-      console.log('authStateObserver працює це false');
     }
   }
 
@@ -57,18 +59,7 @@ function App() {
     return getAuth().currentUser.displayName;
   }
 
-  // Adds a size to Google Profile pics URLs.
-  function addSizeToGoogleProfilePic(url) {
-    if (
-      url.indexOf('googleusercontent.com') !== -1 &&
-      url.indexOf('?') === -1
-    ) {
-      return url + '?sz=150';
-    }
-    return url;
-  }
-
-  // !1111111111111111111111111111111111111111111111111111111111
+  // ! init fireBase
 
   const firebaseAppConfig = getFirebaseConfig();
   initializeApp(firebaseAppConfig);
@@ -82,6 +73,8 @@ function App() {
           element={
             <Characters
               isUser={isUser}
+              userName={userName ?? 'unknown'}
+              userImage={userImage ?? 'unknown'}
               signIn={signIn}
               signOutUser={signOutUser}
             />
