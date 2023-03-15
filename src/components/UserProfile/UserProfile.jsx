@@ -11,8 +11,8 @@ const UserProfile = ({ image, name }) => {
 };
 
 UserProfile.propTypes = {
-  //   image: PropTypes.string.isRequired,
-  //   name: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default UserProfile;

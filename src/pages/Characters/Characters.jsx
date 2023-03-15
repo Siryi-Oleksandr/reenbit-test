@@ -14,6 +14,7 @@ import {
 } from 'components/AuthOptions/AuthOptions.styled';
 import { GoSignOut, GoSignIn } from 'react-icons/go';
 import UserProfile from 'components/UserProfile/UserProfile';
+import NoUser from 'components/NoUser/NoUser';
 
 function Characters({ isUser, userName, userImage, signOutUser, signIn }) {
   const [characters, setCharacters] = useState([]);
@@ -72,7 +73,7 @@ function Characters({ isUser, userName, userImage, signOutUser, signIn }) {
         {isUser && (
           <Button
             type="button"
-            style={{ backgroundColor: 'red' }}
+            style={{ backgroundColor: '#f9ab02f0' }}
             onClick={() => signOutUser()}
           >
             Log out
@@ -84,11 +85,13 @@ function Characters({ isUser, userName, userImage, signOutUser, signIn }) {
       <LogoWrapper>
         <img src={logo} alt="logo" />
       </LogoWrapper>
-
-      <Filter value={filter} onChange={updateQueryString} />
+      {!isUser && <NoUser />}
+      {isUser && <Filter value={filter} onChange={updateQueryString} />}
 
       {status === 'pending' && <Loader />}
-      {status === 'resolved' && <CharactersList characters={filterList()} />}
+      {status === 'resolved' && isUser && (
+        <CharactersList characters={filterList()} />
+      )}
       {status === 'rejected' && <Error error={error.message} />}
     </div>
   );

@@ -1,11 +1,9 @@
 import { GlobalStyle } from 'GlobalStyle';
-import CharacterDetails from 'pages/CharacterDetails/CharacterDetails';
-import Characters from 'pages/Characters/Characters';
 import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
 import { Container } from './App.styled';
 import { initializeApp } from 'firebase/app';
 import { getFirebaseConfig } from '../services/firebase-config';
-// import { FireBaseService } from '../services/firebase';
 import {
   getAuth,
   onAuthStateChanged,
@@ -13,13 +11,15 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
-import { useState } from 'react';
+import CharacterDetails from 'pages/CharacterDetails/CharacterDetails';
+import Characters from 'pages/Characters/Characters';
 
 function App() {
   const [isUser, setIsUser] = useState(false);
   const [userName, setUserName] = useState(null);
   const [userImage, setUserImage] = useState(null);
 
+  //  function for work with authentification
   async function signIn() {
     const provider = new GoogleAuthProvider();
     await signInWithPopup(getAuth(), provider);
@@ -46,9 +46,10 @@ function App() {
     }
   }
 
-  function isUserSignedIn() {
-    return !!getAuth().currentUser;
-  }
+  // useful function for future
+  // function isUserSignedIn() {
+  //   return !!getAuth().currentUser;
+  // }
 
   function getProfilePicUrl() {
     return getAuth().currentUser.photoURL;
