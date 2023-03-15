@@ -8,10 +8,13 @@ import logo from '../../images/logo.png';
 import { LogoWrapper } from './Characters.styled';
 import Filter from 'components/Filter';
 import Error from 'components/Error/Error';
-import AuthOptions from 'components/AuthOptions/AuthOptions';
-import { FireBaseService } from '../../services/firebase';
+import {
+  Button,
+  ButtonWrapper,
+} from 'components/AuthOptions/AuthOptions.styled';
+import { AiFillDislike, AiFillLike } from 'react-icons/ai';
 
-function Characters() {
+function Characters({ isUser, signOutUser, signIn }) {
   const [characters, setCharacters] = useState([]);
   const [status, setStatus] = useState('idle');
   // const [pages, setPages] = useState(null); // this state for feature button 'load more'
@@ -20,11 +23,8 @@ function Characters() {
   const [searchParams, setSearchParams] = useSearchParams();
   const filterName = searchParams.get('name') ?? '';
   const [filter, setFilter] = useState(filterName ?? '');
-  const [isUser, setIsUser] = useState(false);
 
-  const firebase = new FireBaseService();
-  console.log(firebase.isUserSignedIn());
-  firebase.initFirebaseAuth();
+  console.log(isUser);
 
   useEffect(() => {
     setStatus('pending');
@@ -40,14 +40,6 @@ function Characters() {
         setError(error);
       });
   }, []);
-
-  // useEffect(() => {
-  //   first;
-
-  //   return () => {
-  //     second;
-  //   };
-  // }, [isUser]);
 
   const updateQueryString = name => {
     const nextParams = name !== '' ? { name } : {};
@@ -65,7 +57,31 @@ function Characters() {
 
   return (
     <div>
-      <AuthOptions signIn={firebase.signIn} signOut={firebase.signOutUser} />
+      {/* <AuthOptions signIn={firebase.signIn} signOut={firebase.signOutUser} /> */}
+      <ButtonWrapper>
+        {!isUser && (
+          <Button
+            type="button"
+            style={{ backgroundColor: '#22c367' }}
+            onClick={() => signIn()}
+          >
+            Log in with Google
+            <AiFillLike />
+          </Button>
+        )}
+
+        {isUser && (
+          <Button
+            type="button"
+            style={{ backgroundColor: 'red' }}
+            onClick={() => signOutUser()}
+          >
+            Log out
+            <AiFillDislike />
+          </Button>
+        )}
+      </ButtonWrapper>
+
       <LogoWrapper>
         <img src={logo} alt="logo" />
       </LogoWrapper>
