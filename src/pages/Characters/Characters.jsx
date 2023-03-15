@@ -8,6 +8,8 @@ import logo from '../../images/logo.png';
 import { LogoWrapper } from './Characters.styled';
 import Filter from 'components/Filter';
 import Error from 'components/Error/Error';
+import AuthOptions from 'components/AuthOptions/AuthOptions';
+import { FireBaseService } from '../../services/firebase';
 
 function Characters() {
   const [characters, setCharacters] = useState([]);
@@ -18,6 +20,11 @@ function Characters() {
   const [searchParams, setSearchParams] = useSearchParams();
   const filterName = searchParams.get('name') ?? '';
   const [filter, setFilter] = useState(filterName ?? '');
+  const [isUser, setIsUser] = useState(false);
+
+  const firebase = new FireBaseService();
+  console.log(firebase.isUserSignedIn());
+  firebase.initFirebaseAuth();
 
   useEffect(() => {
     setStatus('pending');
@@ -33,6 +40,14 @@ function Characters() {
         setError(error);
       });
   }, []);
+
+  // useEffect(() => {
+  //   first;
+
+  //   return () => {
+  //     second;
+  //   };
+  // }, [isUser]);
 
   const updateQueryString = name => {
     const nextParams = name !== '' ? { name } : {};
@@ -50,6 +65,7 @@ function Characters() {
 
   return (
     <div>
+      <AuthOptions signIn={firebase.signIn} signOut={firebase.signOutUser} />
       <LogoWrapper>
         <img src={logo} alt="logo" />
       </LogoWrapper>
