@@ -1,14 +1,15 @@
 {
   "files": {
     "main.css": "/reenbit-test/static/css/main.c3d5249d.css",
-    "main.js": "/reenbit-test/static/js/main.a8601458.js",
+    "main.js": "/reenbit-test/static/js/main.10ab60b6.js",
+    "static/media/noUser.jpg": "/reenbit-test/static/media/noUser.8dd6223b34f47b017f30.jpg",
     "static/media/logo.png": "/reenbit-test/static/media/logo.7545611f962baddd3909.png",
     "index.html": "/reenbit-test/index.html",
     "main.c3d5249d.css.map": "/reenbit-test/static/css/main.c3d5249d.css.map",
-    "main.a8601458.js.map": "/reenbit-test/static/js/main.a8601458.js.map"
+    "main.10ab60b6.js.map": "/reenbit-test/static/js/main.10ab60b6.js.map"
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.a8601458.js"
+    "static/js/main.10ab60b6.js"
   ]
 }
