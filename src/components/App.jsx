@@ -13,6 +13,8 @@ import {
 } from 'firebase/auth';
 import CharacterDetails from 'pages/CharacterDetails/CharacterDetails';
 import Characters from 'pages/Characters/Characters';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isUser, setIsUser] = useState(false);
@@ -85,6 +87,7 @@ function App() {
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
       <GlobalStyle />
+      <ToastContainer position="top-center" autoClose={2500} />
     </Container>
   );
 }

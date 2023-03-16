@@ -15,6 +15,7 @@ import {
 import { GoSignOut, GoSignIn } from 'react-icons/go';
 import UserProfile from 'components/UserProfile/UserProfile';
 import NoUser from 'components/NoUser/NoUser';
+import { toast } from 'react-toastify';
 
 function Characters({ isUser, userName, userImage, signOutUser, signIn }) {
   const [characters, setCharacters] = useState([]);
@@ -54,6 +55,12 @@ function Characters({ isUser, userName, userImage, signOutUser, signIn }) {
     );
     return visibleCharacters;
   };
+
+  const visibleCharacters = filterList();
+
+  if (visibleCharacters.length === 0 && filter !== '') {
+    toast.info(`No matches found!`);
+  }
 
   return (
     <div>
