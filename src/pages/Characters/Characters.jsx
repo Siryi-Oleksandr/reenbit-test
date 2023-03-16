@@ -56,6 +56,7 @@ function Characters({ isUser, userName, userImage, signOutUser, signIn }) {
     return visibleCharacters;
   };
 
+  // check if no to show characters
   const visibleCharacters = filterList();
 
   if (visibleCharacters.length === 0 && filter !== '') {
